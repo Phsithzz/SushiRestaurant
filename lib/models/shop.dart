@@ -24,7 +24,7 @@ class Shop extends ChangeNotifier {
 
   //getter method
   List<Food> get foodMenu => _foodMenu;
-  List<Food> get cart => cart;
+  List<Food> get cart => _cart;
 
   //add to cart
   void addToCart(Food foodItem, int quantity) {
