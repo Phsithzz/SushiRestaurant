@@ -31,7 +31,7 @@
 
 ### 1️⃣ Clone โปรเจกต์
 ```bash
-git clone https://github.com/Phsithzz/JapaneseFoodShop.git
-cd JapaneseFoodShop
+git clone https://github.com/Phsithzz/SushiRestaurant.git
+cd SushiRestaurant
 flutter pub get
 flutter run
