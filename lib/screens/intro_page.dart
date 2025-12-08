@@ -15,36 +15,38 @@ class IntroPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const SizedBox(height: 25),
-            //shop name
-            Text(
+
+            const Text(
               "SUSHI MAN",
-              style: TextStyle(fontSize: 28, color: Colors.white),
+              style: TextStyle(
+                fontSize: 28,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 25),
-            //icon
+
             Padding(
               padding: const EdgeInsets.all(50.0),
-              child: Image.asset('assets/images/sushi.png'),
+              child: Image.asset('assets/images/salmon.png'),
             ),
             const SizedBox(height: 25),
-            //title
-            Text(
+
+            const Text(
               "THE TASTE OF JAPANESE FOOD",
               style: TextStyle(fontSize: 44, color: Colors.white),
             ),
             const SizedBox(height: 10),
-            //subtitle
+
             Text(
-              "Feel the taste of the most popular Japanesefood front anywhere and anytime",
+              "Feel the taste of the most popular Japanesefood ",
               style: TextStyle(color: Colors.grey[300], height: 2),
             ),
             const SizedBox(height: 25),
 
-            //get started button
             MyButton(
               text: "Get Started",
               onTap: () {
-                //go to menu page
                 Navigator.pushNamed(context, "/menu_page");
               },
             ),

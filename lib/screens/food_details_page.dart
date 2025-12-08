@@ -14,10 +14,8 @@ class FoodDetailsPage extends StatefulWidget {
 }
 
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
-  //quantity
   int quantityCount = 0;
 
-  //decrement quantity
   void decrementQuantity() {
     setState(() {
       if (quantityCount > 0) {
@@ -26,38 +24,36 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
     });
   }
 
-  //increament quantity
   void incrementQuantity() {
     setState(() {
       quantityCount++;
     });
   }
 
-  //add to cart
   void addToCart() {
-    //only add to cart if there is something in the cart
     if (quantityCount > 0) {
-      //get access to shop
       final shop = context.read<Shop>();
-      //add to cart
+
       shop.addToCart(widget.food, quantityCount);
-      //let the user know it was successful
+
       showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
           backgroundColor: primaryColor,
-          content: Text("Successfuly added to cart",style: TextStyle(color:Colors.white),textAlign: TextAlign.center,),
+          content: Text(
+            "Successfuly added to cart",
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
           actions: [
-            //okay button
             IconButton(
               onPressed: () {
-                //pop once to remove dialog box
                 Navigator.pop(context);
-                //pop again to go previous screen
+
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.done,color:Colors.white),
+              icon: Icon(Icons.done, color: Colors.white),
             ),
           ],
         ),
@@ -75,36 +71,19 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
       ),
       body: Column(
         children: [
-          //listview of food details
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: ListView(
                 children: [
-                  //image
                   Image.asset(widget.food.imagePath, height: 200),
                   const SizedBox(height: 25),
-                  //rating
-                  Row(
-                    children: [
-                      //start icon
-                      Icon(Icons.star, color: Colors.amberAccent),
-                      const SizedBox(width: 5),
-                      //rating number
-                      Text(
-                        widget.food.rating,
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 25),
 
-                  //food name
-                  Text(widget.food.name, style: TextStyle(fontSize: 28)),
-                  //description
+                  Text(
+                    widget.food.name,
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  ),
+
                   Text(
                     "Description",
                     style: TextStyle(
@@ -115,28 +94,42 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "Fresh and premium-cut salmon served on perfectly seasoned Japanese rice. Soft, buttery texture with a naturally sweet flavor that melts in your mouth.",
+                    widget.food.description,
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 14,
                       height: 2,
                     ),
                   ),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Icon(Icons.star, color: Colors.amberAccent),
+                      const SizedBox(width: 5),
+
+                      Text(
+                        widget.food.rating,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey[700],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
-          //price + quantity +add to cart button
+
           Container(
             color: primaryColor,
             padding: EdgeInsets.all(25),
             child: Column(
               children: [
-                //price + quantity
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    //price
                     Text(
                       "\$" + widget.food.price,
                       style: TextStyle(
@@ -145,10 +138,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                         fontSize: 18,
                       ),
                     ),
-                    //quantity
+
                     Row(
                       children: [
-                        //minus button
                         Container(
                           decoration: BoxDecoration(
                             color: secondaryColor,
@@ -159,7 +151,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                             icon: Icon(Icons.remove, color: Colors.white),
                           ),
                         ),
-                        //quantity count
+
                         SizedBox(
                           width: 40,
                           child: Center(
@@ -173,7 +165,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                             ),
                           ),
                         ),
-                        //plus buutton
+
                         Container(
                           decoration: BoxDecoration(
                             color: secondaryColor,
@@ -189,7 +181,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   ],
                 ),
                 const SizedBox(height: 25),
-                //add to cart button
+
                 MyButton(text: "Add to Cart", onTap: addToCart),
               ],
             ),

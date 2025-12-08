@@ -4,6 +4,7 @@ import 'package:sushi_restaurant/models/food.dart';
 class FoodTitle extends StatelessWidget {
   final Food food;
   final void Function()? onTap;
+  
   const FoodTitle({super.key, required this.food,required this.onTap});
 
   @override
@@ -21,11 +22,11 @@ class FoodTitle extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //image
+          
             Image.asset(food.imagePath, height: 140),
-            //text
+     
             Text(food.name, style: TextStyle(fontSize: 20)),
-            //price+rating
+     
             SizedBox(
               width: 160,
               child: Row(

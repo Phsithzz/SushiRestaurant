@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_restaurant/components/button.dart';
 import 'package:sushi_restaurant/models/shop.dart';
@@ -8,15 +9,17 @@ import 'package:sushi_restaurant/theme/colors.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
-
+  static final formatter = NumberFormat.currency(
+    locale: 'th_TH',
+    symbol: '฿',
+    decimalDigits: 2,
+  );
   @override
   State<MenuPage> createState() => _MenuPageState();
 }
 
 class _MenuPageState extends State<MenuPage> {
-  //navigate to food item detail page
   void navigateToFoodDetails(int index) {
-    // get the shop and it's menu
     final shop = context.read<Shop>();
     final foodMenu = shop.foodMenu;
     Navigator.push(
@@ -39,7 +42,6 @@ class _MenuPageState extends State<MenuPage> {
         leading: Icon(Icons.menu, color: Colors.grey[900]),
         title: Text("Tokyo", style: TextStyle(color: Colors.grey[900])),
         actions: [
-          //cart
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, "/cart_page");
@@ -51,7 +53,6 @@ class _MenuPageState extends State<MenuPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //promotion banner
           Container(
             decoration: BoxDecoration(
               color: primaryColor,
@@ -62,7 +63,6 @@ class _MenuPageState extends State<MenuPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                //promo message
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -71,17 +71,17 @@ class _MenuPageState extends State<MenuPage> {
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     const SizedBox(height: 20),
-                    //redeem button
+
                     MyButton(text: "Redeem", onTap: () {}),
                   ],
                 ),
-                //image
-                Image.asset("assets/images/sushi.png", height: 100),
+
+                Image.asset("assets/images/salmon.png", height: 100),
               ],
             ),
           ),
           const SizedBox(height: 25),
-          //search bar
+
           Padding(
             padding: const EdgeInsets.all(25.0),
             child: TextField(
@@ -100,7 +100,7 @@ class _MenuPageState extends State<MenuPage> {
           ),
 
           const SizedBox(height: 25),
-          //menu list
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Text(
@@ -125,7 +125,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           const SizedBox(height: 25),
-          //popular food
+
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -138,17 +138,15 @@ class _MenuPageState extends State<MenuPage> {
               children: [
                 Row(
                   children: [
-                    //image
-                    Image.asset("assets/images/sushi.png", height: 60),
+                    Image.asset("assets/images/salmon.png", height: 60),
                     const SizedBox(width: 20),
-                    //name and price
+
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //name
                         Text("Salmon Eggs", style: TextStyle(fontSize: 18)),
                         const SizedBox(height: 10),
-                        //price
+
                         Text(
                           "\$21.00",
                           style: TextStyle(color: Colors.grey[700]),
@@ -158,7 +156,6 @@ class _MenuPageState extends State<MenuPage> {
                   ],
                 ),
 
-                //heart
                 const Icon(
                   Icons.favorite_outline,
                   color: Colors.grey,
